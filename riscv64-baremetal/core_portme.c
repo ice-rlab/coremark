@@ -16,6 +16,9 @@ limitations under the License.
 Original Author: Shay Gal-on
 */
 
+#ifdef PMU
+#include "../../benchmarks/pmu_defs.h"
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include "coremark.h"
@@ -139,6 +142,9 @@ void start_time(void) {
 #if MICA
     asm volatile("int3");/*1 */
 #endif
+#ifdef PMU
+	start_counters();
+#endif
 }
 /* Function: stop_time
 	This function will be called right after ending the timed portion of the benchmark.
@@ -147,6 +153,9 @@ void start_time(void) {
 	or other system parameters - e.g. reading the current value of cpu cycles counter.
 */
 void stop_time(void) {
+#ifdef PMU
+	end_counters();
+#endif
 #if CALLGRIND_RUN
 	 CALLGRIND_STOP_INSTRUMENTATION
 #endif
