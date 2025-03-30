@@ -17,7 +17,7 @@ Original Author: Shay Gal-on
 */
 
 #ifdef PMU
-#include "../../benchmarks/pmu_defs.h"
+#include "../pmu_defs.h"
 #endif
 #include <stdio.h>
 #include <stdlib.h>
